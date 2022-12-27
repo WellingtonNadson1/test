@@ -1,5 +1,5 @@
-import { send } from "../helpers/Send.js";
-import UserRepository from "../repositories/UserRepository.js";
+import { send } from "../../helpers/Send.js";
+import UserRepository from "../../repositories/UserRepositories/UserRepository.js";
 
 class UserContrller {
   async index(request, response){
@@ -22,15 +22,15 @@ class UserContrller {
   }
 
   async store(request, response){
-    const { userName, userEmail } = request.body
-    const newUser = await UserRepository.createUser(userName, userEmail)
+    const { name_User, last_NameUser, email_User, id_Phone, dateCreateUser, statusAtivo } = request.body
+    const newUser = await UserRepository.createUser(name_User, last_NameUser, email_User, id_Phone, dateCreateUser, statusAtivo)
     send(201, response, newUser)
   }
 
   async update(request, response){
     const { id } = request.params
-    const { userName, userEmail } = request.body
-    const updateUser = await UserRepository.updateUser(id, userName, userEmail)
+    const { name_User, last_NameUser, email_User, id_Phone, dateCreateUser, statusAtivo } = request.body
+    const updateUser = await UserRepository.updateUser(id, name_User, last_NameUser, email_User, id_Phone, dateCreateUser, statusAtivo)
     send(200, response, updateUser)
   }
 

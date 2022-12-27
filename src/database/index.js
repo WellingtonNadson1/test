@@ -3,7 +3,7 @@ import pkg from 'pg';
 const { Client } = pkg;
 
 dotenv.config()
-const connectionString = proc.env.PGHOST
+const connectionString = process.env.PGHOST
 
 const client = new Client({
   connectionString

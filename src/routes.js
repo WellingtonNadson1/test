@@ -1,4 +1,4 @@
-import UserController from "./controllers/UserController.js";
+import UserController from "./controllers/UserControllers/UserController.js";
 
 export let routes = [
   {
