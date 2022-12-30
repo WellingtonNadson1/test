@@ -1,23 +1,30 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import { setupCounter } from './counter.js'
+import './css/main.css';
+import './css/style.css';
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const form_Cadastro = document.querySelector('#form_cadastro')
 
-setupCounter(document.querySelector('#counter'))
+form_Cadastro.addEventListener('submit', e =>{
+  e.preventDefault();
+
+  const formData = new FormData(form_Cadastro)
+  const data = Object.fromEntries(formData)
+  const dateCreateUser = new Date().toISOString()
+  const statusAtivo = true
+
+  const totalData = {...data, dateCreateUser, statusAtivo}
+
+  fetch('http://localhost:3000/users', {
+    method: 'POST',
+    headers: new Headers(
+      {
+        'Content-type': 'application/json'
+      }
+    ),
+    body: JSON.stringify(totalData)
+  })
+  .then(res => res.json())
+  .then(totalData => console.log(totalData))
+  .catch(error => console.log('erro', error))
+
+  console.log(totalData)
+})

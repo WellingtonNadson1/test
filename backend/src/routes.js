@@ -17,6 +17,11 @@ export let routes = [
     handler: UserController.store
   },
   {
+    endpoint: '/users',
+    method: 'OPTIONS',
+    handler: UserController.store
+  },
+  {
     endpoint: '/users/:id',
     method: 'PUT',
     handler: UserController.update
